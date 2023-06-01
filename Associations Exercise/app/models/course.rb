@@ -11,7 +11,9 @@
 #
 class Course < ApplicationRecord
     belongs_to :enrollments
-    
 
-    has_many :enrolled_students
+
+    has_many :enrolled_students, through: :enrollments, source: :student
+    has_many :prerequisite, through: :courses, source: :prereq
+
 end
