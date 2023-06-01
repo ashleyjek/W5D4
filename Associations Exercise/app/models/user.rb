@@ -8,7 +8,13 @@
 #  updated_at :datetime         not null
 #
 class User < ApplicationRecord
-    has_many :enrollments
+    validates :name, presence: true
+    
+    has_many :enrollments,
+        dependent: :destroy
+
+    has_many :courses,
+        dependent: :destroy
 
 
     has_many :enrolled_courses, through: :enrollments, source: :course
