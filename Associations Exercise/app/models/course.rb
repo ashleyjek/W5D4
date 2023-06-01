@@ -10,7 +10,7 @@
 #  updated_at    :datetime         not null
 #
 class Course < ApplicationRecord
-    validates :name, :instructor, presence: true
+    validates :name, :instructor_id, presence: true
 
     belongs_to :instructor,
         primary_key: :id,
@@ -18,15 +18,8 @@ class Course < ApplicationRecord
         class_name: :User
         
 
-    belongs_to :enrollments
-<<<<<<< HEAD
+    has_many :enrollments
 
-
-    has_many :enrolled_students, through: :enrollments, source: :student
-    has_many :prerequisite, through: :courses, source: :prereq
-
-=======
-    
     has_many :enrolled_students, through: :enrollments, source: :student
 
     belongs_to :prerequisite,
@@ -35,5 +28,4 @@ class Course < ApplicationRecord
         class_name: :Course,
         optional: true
 
->>>>>>> ac51cc1 (prerequisite pt 1)
 end
